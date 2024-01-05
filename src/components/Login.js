@@ -70,8 +70,9 @@ const Login = ({ handleLogin }) => {
                   value="SuperAdmin LoginIn"
                   type="checkbox"
                   ref={checkboxRef}
+                  id="superAdmin"
                 />
-                <label>Sign In As super Admin</label>
+                <label htmlFor="superAdmin">Sign In As super Admin</label>
               </div>
 
               <p className="text-neutral-400 my-4 text-center">

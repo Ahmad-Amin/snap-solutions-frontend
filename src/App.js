@@ -20,10 +20,15 @@ function App() {
     navigate("/dashboard");
   };
 
+  const handleLogOut = () => {
+    setUser(false)
+    setSuperAdmin(false)
+  }
+
   const adminDashboard = SuperAdminState ? (
-    <SuperAdmin setUser={setUser} />
+    <SuperAdmin handleLogOut={handleLogOut} />
   ) : (
-    <AdminDashboard setUser={setUser} />
+    <AdminDashboard />
   );
 
   return (

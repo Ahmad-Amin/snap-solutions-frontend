@@ -40,7 +40,7 @@ const NavigationBar = ({ showLogo }) => {
           </div>
         </div>
       </div>
-      <hr className="my-6" />
+      <hr className="mt-2 mb-4" />
     </>
   );
 };

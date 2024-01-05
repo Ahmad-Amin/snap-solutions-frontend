@@ -13,7 +13,7 @@ import { IoMdLogOut } from "react-icons/io";
 
 import siteLogo from "../../assets/siteLogo.png";
 
-const SuperSidebar = ({ setUser }) => {
+const SuperSidebar = ({ handleLogOut }) => {
   return (
     <div>
       <img className="h-auto max-w-full" alt="Website logo" src={siteLogo} />
@@ -45,7 +45,7 @@ const SuperSidebar = ({ setUser }) => {
             Other
           </p>
           <MenuButtons icon={<IoMdSettings />} menuText="settings" />
-          <div onClick={() => setUser(false)}>
+          <div onClick={() => handleLogOut(false)}>
             <MenuButtons icon={<IoMdLogOut />} menuText="logOut" />
           </div>
         </div>

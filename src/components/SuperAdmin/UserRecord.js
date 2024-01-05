@@ -1,6 +1,7 @@
 import React from "react";
 import Avatar from "../../assets/Avatar.png";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const UserRecord = ({ name, email, id, investType, status, amount }) => {
   return (
@@ -45,9 +46,9 @@ const UserRecord = ({ name, email, id, investType, status, amount }) => {
         </p>
       </td>
       <td className="py-4 px-2 min-w-36 " scope="row">
-        <div className="flex justify-end text-2xl">
+        <Link to='/userChat' className="flex justify-end text-2xl">
           <BsThreeDotsVertical />
-        </div>
+        </Link>
       </td>
     </tr>
   );
