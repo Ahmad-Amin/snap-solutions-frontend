@@ -12,7 +12,7 @@ const RecentPayment = () => {
         <div className=" bg-white rounded-2xl flex justify-between py-4 px-3">
           <div className="flex gap-5">
             <div className="flex justify-center items-center">
-              <img src={recentPaymentOne} />
+              <img src={recentPaymentOne} alt="User Profile" />
             </div>
             <div>
               <p className=" font-medium text-base">Emma Ryan Jr.</p>
@@ -32,7 +32,7 @@ const RecentPayment = () => {
         <div className=" bg-white rounded-2xl flex justify-between py-4 px-3">
           <div className="flex gap-5">
             <div className="flex justify-center items-center">
-              <img src={recentPaymentTwo} />
+              <img src={recentPaymentTwo} alt="User Profile" />
             </div>
             <div>
               <p className=" font-medium text-base">Justin Weber</p>

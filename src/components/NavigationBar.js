@@ -1,12 +1,10 @@
 import React, { useContext } from "react";
 
-import userImage from "../assets/userImage.png";
-
 import { CiSearch } from "react-icons/ci";
 import { IoIosNotifications } from "react-icons/io";
 import { RiMessage2Fill } from "react-icons/ri";
 import { MdKeyboardArrowDown } from "react-icons/md";
-import { InputField } from "./InputField";
+
 import { Link } from "react-router-dom";
 
 import siteLogo from "../assets/siteLogo.png";
@@ -22,7 +20,7 @@ const NavigationBar = ({ showLogo }) => {
   return (
     <>
       <div className="flex ">
-        <Link to={"/dashboard"}>{showLogo && <img src={siteLogo} />}</Link>
+        <Link to={"/dashboard"}>{showLogo && <img src={siteLogo} alt="Site Logo" />}</Link>
         <div className="flex lg:flex-row flex-col gap-3 justify-between flex-1">
           <div className="flex items-center">
             <div className="flex flex-row gap-2 border border-neutral-300 px-4 py-1.5 rounded-lg bg-neutral-100">

@@ -25,7 +25,7 @@ const MyAccount = () => {
     <div className="px-20">
       <p className="font-semibold text-3xl my-4">My Account</p>
       <div className=" flex flex-col gap-4 justify-center items-center">
-        <img src={displayImage} className="w-40 h-40 rounded-full object-cover" />
+        <img src={displayImage} alt="Display Avatar" className="w-40 h-40 rounded-full object-cover" />
         <p className=" font-bold text-xl">{ name}</p>
       </div>
       <div className="flex gap-2 flex-col">

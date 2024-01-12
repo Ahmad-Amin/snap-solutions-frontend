@@ -5,7 +5,7 @@ const SingleChatBlock = ({image, name, msgHighlight, time, active}) => {
     <div className={`p-2 rounded-lg cursor-pointer hover:bg-neutral-100 ${active ? 'bg-neutral-200': ''}`}>
       <div className="flex justify-between">
         <div className="flex gap-2 ">
-          <img src={image} />
+          <img src={image} alt='User Avatar' />
           <div className="flex flex-col gap-1">
             <p className=" font-normal text-sm leading-5 text-black">{name}</p>
             <p className=" font-normal text-xs text-black opacity-40">

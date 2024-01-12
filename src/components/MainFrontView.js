@@ -42,7 +42,7 @@ const MainFrontView = () => {
           </div>
           <div className="col-span-1 text-right">
             <div className="mb-5 flex justify-end">
-              <img src={Graph} />
+              <img src={Graph} alt="Graph" />
             </div>
             <p className=" bg-orange-200 p-2 font-normal text-xs inline-block rounded-lg">
               +2% Past month

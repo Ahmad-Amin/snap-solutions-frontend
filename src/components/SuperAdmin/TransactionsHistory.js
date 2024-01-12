@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Button from "./Button";
 import recentPaymentOne from "../../assets/rp-1.png";
-import recentPaymentTwo from "../../assets/rp-2.png";
 import Transaction from "./Transaction";
 import axios from "axios";
 
 const TransactionsHistory = () => {
-
   const [transactionsData, setTransactionsData] = useState([]);
 
   useEffect(() => {

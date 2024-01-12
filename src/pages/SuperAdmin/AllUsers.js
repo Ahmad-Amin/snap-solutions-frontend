@@ -1,51 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { CiCirclePlus } from "react-icons/ci";
 import UserRecord from "../../components/SuperAdmin/UserRecord";
 import AddNewUser from "../../components/SuperAdmin/AddNewUser";
 import Modal from "../../UI/Modal";
 import axios from "axios";
 import Spinner from "../../UI/Spinner";
+import UserContext from "../../store/user-context";
 
 const AllUsers = () => {
-  const UsersData = [
-    {
-      name: "Tanner Finsha",
-      email: "Tannerfisher@gmail.com",
-      id: "#23454GH6J7YT6",
-      investType: {
-        name: "Information Tech",
-        role: "Full time",
-      },
-      status: "Active",
-      amount: "$3,023",
-    },
-    {
-      name: "Emeto Winner",
-      email: "Emetowinner@gmail.com",
-      id: "#23454GH6J7YT6",
-      investType: {
-        name: "Car Business",
-        role: "Contract",
-      },
-      status: "Active",
-      amount: "$3,023",
-    },
-    {
-      name: "Tassy Omah",
-      email: "Tassyomah@gmail.com",
-      id: "#23454GH6J7YT6",
-      investType: {
-        name: "Medical Business",
-        role: "Associate",
-      },
-      status: "Active",
-      amount: "$76,523",
-    },
-  ];
-
   const [modalShow, setModalShow] = useState(false);
-  const [userList, setuserList] = useState([]);
   const [spinnerShow, setSpinnerShow] = useState(false);
+  const userCtx = useContext(UserContext)
 
   const handleNewUser = () => {
     setModalShow(true);
@@ -56,6 +21,7 @@ const AllUsers = () => {
   }
 
   useEffect(() => {
+    if (userCtx.allUsers.length !== 0) return;
     const getAllUsers = async () => {
       try {
         setSpinnerShow(true);
@@ -63,8 +29,8 @@ const AllUsers = () => {
           `${process.env.REACT_APP_API_URL}/get-all-users`
         );
         if (response.status === 200 && response.data !== null) {
-          setuserList(response.data);
           setSpinnerShow(false);
+          userCtx.saveToGlobalStore(response.data)
         }
       } catch (error) {
         console.log(error);
@@ -133,7 +99,7 @@ const AllUsers = () => {
               </tr>
             </thead>
             <tbody>
-              {userList.map((rec) => (
+              {userCtx.allUsers.map((rec) => (
                 <UserRecord
                   key={rec.id}
                   name={rec?.name}

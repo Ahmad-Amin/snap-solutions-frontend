@@ -49,7 +49,9 @@ const SuperDashboard = () => {
         <TransactionsHistory />
       </div>
       {modalShow && (
-        <Modal onhideDetails={() => setModalShow(false)}><NewTransaction /></Modal>
+        <Modal onhideDetails={() => setModalShow(false)}>
+          <NewTransaction setModalShow={setModalShow} />
+        </Modal>
       )}
     </div>
   );

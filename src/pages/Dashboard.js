@@ -1,6 +1,4 @@
 import React from "react";
-import Sidebar from "../components/Sidebar";
-import NavigationBar from "../components/NavigationBar";
 import MainFrontView from "../components/MainFrontView";
 import RightSideBar from "../components/RightSideBar";
 

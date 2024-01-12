@@ -19,7 +19,7 @@ const ChatWindow = () => {
     <div className="p-4 border border-neutral-300 rounded-lg">
       <div className=" flex justify-between">
         <div className="flex gap-2">
-          <img src={Dp1} />
+          <img src={Dp1} alt="User Avater" />
           <div>
             <p className=" font-normal text-sm leading-5">ByeWind</p>
             <p className=" font-normal text-xs text-black opacity-40">
@@ -51,7 +51,7 @@ const ChatWindow = () => {
           </p>
         </div>
         <div className=" flex justify-start flex-col w-7/12 mt-2">
-          <img src={Frame} className=" " />
+          <img src={Frame} alt="User Avater" />
           <div className="p-4 bg-indigo-50 rounded-b-2xl">
             <p className=" font-normal text-sm leading-5 text-indigo-400">
               snow.byewind.com
@@ -69,7 +69,7 @@ const ChatWindow = () => {
 
         <div className=" flex justify-start">
           <div className="text-black text-sm leading-5 bg-indigo-100 max-w-96 rounded-t-2xl rounded-br-2xl py-3 px-5">
-            <img src={SmilyEmoji} />
+            <img src={SmilyEmoji} alt="User Avater" />
           </div>
         </div>
 
@@ -84,7 +84,7 @@ const ChatWindow = () => {
             type="text"
             className="flex-1 bg-transparent font-normal text-sm"
           />
-          <img src={ArrowSend} className="cursor-pointer" />
+          <img src={ArrowSend} alt="User Avater" className="cursor-pointer" />
         </div>
       </div>
     </div>

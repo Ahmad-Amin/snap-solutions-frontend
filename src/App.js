@@ -1,15 +1,13 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useContext } from "react";
 import "./App.css";
 import Login from "./components/Login";
 import { AdminDashboard } from "./pages/AdminDashboard";
-import { BrowserRouter as Router } from "react-router-dom";
 
 import { useNavigate } from "react-router-dom";
 import SuperAdmin from "./pages/SuperAdmin/SuperAdmin";
-import axios from "axios";
 import UserContext from "./store/user-context";
 
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {

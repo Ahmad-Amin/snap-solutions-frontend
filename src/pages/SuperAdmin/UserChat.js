@@ -101,8 +101,8 @@ const UserChat = () => {
       <div className="col-span-1 overflow-y-scroll" style={{ height: "720px" }}>
         <div className="flex justify-between bg-neutral-100 p-2 rounded-lg">
           <div className="flex gap-3 flex-row">
-            <img src={PencilWrite} />
-            <img src={Gear} />
+            <img src={PencilWrite} alt="Pencil Write" />
+            <img src={Gear} alt="Gear" />
           </div>
           <div className=" border border-neutral-300 rounded-lg flex items-center gap-2 px-2 py-1 ">
             <CiSearch />

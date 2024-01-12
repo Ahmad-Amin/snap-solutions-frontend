@@ -4,19 +4,24 @@ import UserContext from "./user-context";
 const UserProvider = (props) => {
   const [user, setUser] = useState({});
   const [superAdmin, setSuperAdmin] = useState(false);
+  const [allUsers, setAllUsers] = useState([]);
 
   const removeUserDataHandler = () => {
-    setSuperAdmin(false)
-    setUser({})
+    setSuperAdmin(false);
+    setUser({});
     localStorage.removeItem("user");
   };
 
   const saveUserData = (user) => {
     setUser(user);
     localStorage.setItem("user", JSON.stringify(user));
-    if (user?.role == "superadmin") {
+    if (user?.role === "superadmin") {
       setSuperAdmin(true);
     }
+  };
+
+  const saveToGlobalStore = (userList) => {
+    setAllUsers(userList);
   };
 
   const userContext = {
@@ -24,6 +29,8 @@ const UserProvider = (props) => {
     logoutUser: removeUserDataHandler,
     saveUserData: saveUserData,
     superAdmin: superAdmin,
+    saveToGlobalStore: saveToGlobalStore,
+    allUsers: allUsers,
   };
 
   return (

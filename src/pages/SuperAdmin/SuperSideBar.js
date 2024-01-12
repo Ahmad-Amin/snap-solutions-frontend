@@ -3,7 +3,6 @@ import React from "react";
 import MenuButtons from "../../components/MenuButtons";
 
 import { LuLayoutDashboard } from "react-icons/lu";
-import { BiSupport } from "react-icons/bi";
 import { IoMdSettings } from "react-icons/io";
 
 import { ImUsers } from "react-icons/im";

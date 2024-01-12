@@ -4,7 +4,7 @@ const CurrencyFormatter = ({ amount }) => {
     currency: "USD",
   }).format(amount);
 
-  return <div>{formattedAmount}</div>;
+  return <span>{formattedAmount}</span>;
 }
 
 export default CurrencyFormatter

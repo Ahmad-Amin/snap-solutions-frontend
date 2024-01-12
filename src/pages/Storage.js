@@ -102,7 +102,7 @@ const Storage = () => {
       <div className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4 my-4">
         <div className="py-5 px-4 rounded-2xl hover:shadow-xl transition ease-in-out duration-300 cursor-pointer">
           <div className=" bg-blue-100 bg-opacity-50 inline-block rounded-sm p-2">
-            <img src={ICloud} />
+            <img src={ICloud} alt="Cloud" />
           </div>
           <p className=" font-semibold text-base text-neutral-700 my-2">
             Icloud
@@ -119,7 +119,7 @@ const Storage = () => {
         </div>
         <div className="py-5 px-4 rounded-2xl hover:shadow-xl transition ease-in-out duration-300 cursor-pointer">
           <div className=" bg-yellow-200 bg-opacity-50 inline-block rounded-sm p-2">
-            <img src={GoogleDrive} />
+            <img src={GoogleDrive} alt="Google Drive" />
           </div>
           <p className=" font-semibold text-base text-neutral-700 my-2">
             Google Drive
@@ -136,7 +136,7 @@ const Storage = () => {
         </div>
         <div className="py-5 px-4 rounded-2xl hover:shadow-xl transition ease-in-out duration-300 cursor-pointer">
           <div className=" bg-red-400 bg-opacity-50 inline-block rounded-sm p-2">
-            <img src={Mega} />
+            <img src={Mega} alt="Mega" />
           </div>
           <p className=" font-semibold text-base text-neutral-700 my-2">Mega</p>
           <div>
@@ -151,7 +151,7 @@ const Storage = () => {
         </div>
         <div className="py-5 px-4 rounded-2xl hover:shadow-xl transition ease-in-out duration-300 cursor-pointer">
           <div className=" bg-cyan-400 bg-opacity-50 inline-block rounded-sm p-2">
-            <img src={MediaFire} />
+            <img src={MediaFire} alt="Media Fire" />
           </div>
           <p className=" font-semibold text-base text-neutral-700 my-2">
             MediaFire

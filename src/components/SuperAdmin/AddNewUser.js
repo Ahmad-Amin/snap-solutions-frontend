@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { InputField } from "../InputField";
 import axios from "axios";
 
 const AddNewUser = () => {

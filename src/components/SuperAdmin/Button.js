@@ -3,7 +3,7 @@ import React from 'react'
 const Button = ({ name }) => {
 
   const customClasses =
-    name == "Done"
+    name === "Done"
       ? "text-cyan-400 bg-cyan-200"
       : "text-yellow-400 bg-yellow-200";
 

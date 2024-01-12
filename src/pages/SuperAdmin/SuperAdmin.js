@@ -1,13 +1,8 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import NavigationBar from "../../components/NavigationBar";
-import Sidebar from "../../components/Sidebar";
 import AllUsers from "../SuperAdmin/AllUsers";
 
-import Dashboard from "../Dashboard";
-import Storage from "../Storage";
-import MyAccount from "../MyAccount";
-import EditAccount from "../EditAccount";
 import SuperSidebar from "./SuperSideBar";
 import SuperDashboard from "./SuperDashboard";
 import UserChat from "./UserChat";
