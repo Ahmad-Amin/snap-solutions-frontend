@@ -101,7 +101,7 @@ const AllUsers = () => {
             <tbody>
               {userCtx.allUsers.map((rec) => (
                 <UserRecord
-                  key={rec.id}
+                  key={rec.id || rec._id}
                   name={rec?.name}
                   email={rec.email}
                   id={rec.id || rec._id}

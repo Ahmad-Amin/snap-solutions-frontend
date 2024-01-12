@@ -18,15 +18,14 @@ const UserRecord = ({
   };
 
   const handleDeleteClick = (userId) => {
-    onDelete(userId); 
+    // onDelete(userId); 
+    console.log(userId)
     setShowDropdown(false); 
   };
 
   return (
-    <tr className=" dark:bg-gray-80 hover:bg-gray-50 cursor-pointer font-normal text-base">
-      <td
-        className=" font-medium text-gray-900 whitespace-nowrap py-4 min-w-60"
-      >
+    <tr className=" cursor-pointer font-normal text-base">
+      <td className=" font-medium text-gray-900 whitespace-nowrap py-4 min-w-60">
         <div className="flex gap-4 items-center">
           {displayImage ? (
             <img
@@ -74,16 +73,21 @@ const UserRecord = ({
           {amount && <CurrencyFormatter amount={amount} />}
         </p>
       </td>
-      <td className="py-4 px-2 min-w-36 ">
+      <td className="py-4 px-2 min-w-36 relative ">
         <button
           onClick={handleDropdownClick}
-          className="flex justify-end text-2xl"
+          className="flex justify-end text-2xl "
         >
           <BsThreeDotsVertical />
         </button>
         {showDropdown && (
-          <div className="dropdown-content">
-            <div onClick={() => handleDeleteClick(id)}>Delete</div>
+          <div className="bg-white p-3 absolute -top-4 right-0 w-32">
+            <p
+              className="text-red-600 bg-white text-right hover:bg-gray-100"
+              onClick={() => handleDeleteClick(id)}
+            >
+              Delete
+            </p>
           </div>
         )}
       </td>

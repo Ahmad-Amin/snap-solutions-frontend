@@ -32,15 +32,26 @@ const Sidebar = () => {
             icon={<LuLayoutDashboard />}
             menuText="dashboard"
             color="#B2B2B2"
+            isEnabled={true}
           />
           <MenuButtons
             icon={<RiDriveLine />}
             menuText="drive"
             color="#B2B2B2"
+            isEnabled={true}
           />
-          <MenuButtons icon={<CgNotes />} menuText="overview" color="#B2B2B2" />
+          <MenuButtons
+            icon={<CgNotes />}
+            menuText="overview"
+            color="#B2B2B2"
+            isEnabled={false}
+          />
           <div onClick={handleLogOut}>
-            <MenuButtons icon={<IoMdLogOut />} menuText="logOut" />
+            <MenuButtons
+              icon={<IoMdLogOut />}
+              menuText="logOut"
+              isEnabled={false}
+            />
           </div>
         </div>
 
@@ -48,8 +59,16 @@ const Sidebar = () => {
           <p className="uppercase text-xs font-medium py-2 text-neutral-600">
             Other
           </p>
-          <MenuButtons icon={<BiSupport />} menuText="support" />
-          <MenuButtons icon={<IoMdSettings />} menuText="settings" />
+          <MenuButtons
+            icon={<BiSupport />}
+            menuText="support"
+            isEnabled={false}
+          />
+          <MenuButtons
+            icon={<IoMdSettings />}
+            menuText="settings"
+            isEnabled={true}
+          />
         </div>
       </div>
     </div>

@@ -10,6 +10,7 @@ const UserProvider = (props) => {
     setSuperAdmin(false);
     setUser({});
     localStorage.removeItem("user");
+    setAllUsers([])
   };
 
   const saveUserData = (user) => {

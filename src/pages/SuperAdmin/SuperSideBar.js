@@ -34,17 +34,25 @@ const SuperSidebar = () => {
             icon={<LuLayoutDashboard />}
             menuText="dashboard"
             color="#B2B2B2"
+            isEnabled={true}
           />
-          <MenuButtons icon={<ImUsers />} menuText="users" color="#B2B2B2" />
+          <MenuButtons
+            icon={<ImUsers />}
+            menuText="users"
+            color="#B2B2B2"
+            isEnabled={true}
+          />
           <MenuButtons
             icon={<RiWallet3Fill />}
             menuText="accounts"
             color="#B2B2B2"
+            isEnabled={false}
           />
           <MenuButtons
             icon={<IoIosStats />}
             menuText="statistics"
             color="#B2B2B2"
+            isEnabled={false}
           />
         </div>
 
@@ -52,9 +60,17 @@ const SuperSidebar = () => {
           <p className="uppercase text-xs font-medium py-2 text-neutral-600">
             Other
           </p>
-          <MenuButtons icon={<IoMdSettings />} menuText="settings" />
+          <MenuButtons
+            icon={<IoMdSettings />}
+            menuText="settings"
+            isEnabled={false}
+          />
           <div onClick={handleLogOut}>
-            <MenuButtons icon={<IoMdLogOut />} menuText="logOut" />
+            <MenuButtons
+              icon={<IoMdLogOut />}
+              menuText="logOut"
+              isEnabled={false}
+            />
           </div>
         </div>
       </div>
