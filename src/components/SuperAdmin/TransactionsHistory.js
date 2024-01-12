@@ -38,28 +38,29 @@ const TransactionsHistory = () => {
       <hr className="mt-4" />
       <div className="relative overflow-x-auto mt-4">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500">
-          <thead class="text-xs text-gray-700 font-medium">
+          <thead className="text-xs text-gray-700 font-medium">
             <tr>
-              <th scope="col" class="px-6 py-3 text-center">
+              <th scope="col" className="px-6 py-3 text-center">
                 Reciever
               </th>
-              <th scope="col" class="px-6 py-3 text-center">
+              <th scope="col" className="px-6 py-3 text-center">
                 Type
               </th>
-              <th scope="col" class="px-6 py-3 text-center">
+              <th scope="col" className="px-6 py-3 text-center">
                 Status
               </th>
-              <th scope="col" class="px-6 py-3 text-center">
+              <th scope="col" className="px-6 py-3 text-center">
                 Date
               </th>
-              <th scope="col" class="px-6 py-3 text-center">
+              <th scope="col" className="px-6 py-3 text-center">
                 Amount
               </th>
             </tr>
           </thead>
           <tbody>
-            {transactionDate.map((rec) => (
+            {transactionDate.map((rec, index) => (
               <Transaction
+                key={index}
                 name={rec.name}
                 image={rec.image}
                 department={rec.department}

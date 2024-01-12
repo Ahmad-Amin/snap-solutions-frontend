@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import userImage from "../assets/userImage.png";
 
@@ -10,8 +10,15 @@ import { InputField } from "./InputField";
 import { Link } from "react-router-dom";
 
 import siteLogo from "../assets/siteLogo.png";
+import UserContext from "../store/user-context";
 
 const NavigationBar = ({ showLogo }) => {
+  const userCtx = useContext(UserContext);
+
+  const { name, displayImage } = userCtx.user;
+
+  const displayName = name || "No Name";
+
   return (
     <>
       <div className="flex ">
@@ -33,8 +40,19 @@ const NavigationBar = ({ showLogo }) => {
             <IoIosNotifications className="text-2xl text-neutral-400 cursor-pointer" />
             <RiMessage2Fill className="text-2xl text-neutral-400 cursor-pointer" />
             <div className="flex justify-start items-center gap-3 cursor-pointer">
-              <img src={userImage} alt="User Profile" />
-              <Link to={`/settings`}>Admirra John</Link>
+              {displayImage ? (
+                <img
+                  src={displayImage}
+                  alt="User Profile"
+                  className=" w-11 h-11 rounded-full object-cover"
+                />
+              ) : (
+                <div className=" w-11 h-11 rounded-full bg-pink-300 uppercase flex justify-center items-center">
+                  {name?.substring(0, 2)}
+                </div>
+              )}
+
+              <Link to={`/settings`}>{displayName}</Link>
               <MdKeyboardArrowDown className="text-2xl text-neutral-400" />
             </div>
           </div>

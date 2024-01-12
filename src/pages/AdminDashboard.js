@@ -22,7 +22,7 @@ export const AdminDashboard = () => {
   );
   return (
     <>
-      <div className="xl:grid xl:grid-cols-6">  
+      <div className="xl:grid xl:grid-cols-6">
         {hideSideBar ? null : (
           <div className="bg-neutral-100 py-11 px-5 h-screen">
             <Sidebar />
@@ -39,8 +39,14 @@ export const AdminDashboard = () => {
             <Routes>
               <Route path="/dashboard" index element={<Dashboard />}></Route>
               <Route path="/drive" element={<Storage />}></Route>
-              <Route path="/settings" element={<MyAccount />}></Route>
-              <Route path="/edit" element={<EditAccount />}></Route>
+              <Route
+                path="/settings"
+                element={<MyAccount />}
+              ></Route>
+              <Route
+                path="/edit"
+                element={<EditAccount />}
+              ></Route>
               {/* <Route path="overview" element={<Dashboard />}></Route> */}
               {/* <Route path="support" element={<Dashboard />}></Route> */}
               {/* <Route path="settings" element={<Dashboard />}></Route> */}

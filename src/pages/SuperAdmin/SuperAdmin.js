@@ -13,7 +13,7 @@ import SuperDashboard from "./SuperDashboard";
 import UserChat from "./UserChat";
 import { useLocation } from "react-router-dom";
 
-const SuperAdmin = ({ handleLogOut }) => {
+const SuperAdmin = () => {
   const location = useLocation();
   const path = location.pathname;
   const noSideBarPaths = ["/userChat"];
@@ -27,7 +27,7 @@ const SuperAdmin = ({ handleLogOut }) => {
       <div className="xl:grid xl:grid-cols-6">
         {hideSideBar ? null : (
           <div className=" py-11 px-5 h-screen">
-            <SuperSidebar handleLogOut={handleLogOut} />
+            <SuperSidebar />
           </div>
         )}
 

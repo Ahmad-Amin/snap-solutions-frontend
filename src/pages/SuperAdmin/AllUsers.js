@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CiCirclePlus } from "react-icons/ci";
 import UserRecord from "../../components/SuperAdmin/UserRecord";
 import AddNewUser from "../../components/SuperAdmin/AddNewUser";
 import Modal from "../../UI/Modal";
+import axios from "axios";
+import Spinner from "../../UI/Spinner";
 
 const AllUsers = () => {
   const UsersData = [
@@ -42,10 +44,36 @@ const AllUsers = () => {
   ];
 
   const [modalShow, setModalShow] = useState(false);
+  const [userList, setuserList] = useState([]);
+  const [spinnerShow, setSpinnerShow] = useState(false);
 
   const handleNewUser = () => {
     setModalShow(true);
   };
+
+  const handleDeleteUser = (userId) => {
+    console.log(userId)
+  }
+
+  useEffect(() => {
+    const getAllUsers = async () => {
+      try {
+        setSpinnerShow(true);
+        const response = await axios.get(
+          `${process.env.REACT_APP_API_URL}/get-all-users`
+        );
+        if (response.status === 200 && response.data !== null) {
+          setuserList(response.data);
+          setSpinnerShow(false);
+        }
+      } catch (error) {
+        console.log(error);
+        setSpinnerShow(false);
+      }
+    };
+
+    getAllUsers();
+  }, []);
 
   return (
     <div>
@@ -62,43 +90,65 @@ const AllUsers = () => {
         </div>
       </div>
       <div className="relative overflow-x-auto mt-4">
-        <table className="w-full text-sm text-left rtl:text-right text-neutral-500">
-          <thead class="text-xs text-gray-700 font-medium">
-            <tr>
-              <th scope="col" class="px-6 py-3 text-center font-medium text-xs">
-                Name
-              </th>
-              <th scope="col" class="px-6 py-3 text-center font-medium text-xs">
-                UserID
-              </th>
-              <th scope="col" class="px-6 py-3 text-center font-medium text-xs">
-                Investment Type
-              </th>
-              <th scope="col" class="px-6 py-3 text-center font-medium text-xs">
-                Status
-              </th>
-              <th scope="col" class="px-6 py-3 text-center font-medium text-xs">
-                Amount Distributed
-              </th>
-              <th
-                scope="col"
-                class="px-6 py-3 text-center font-medium text-xs"
-              ></th>
-            </tr>
-          </thead>
-          <tbody>
-            {UsersData.map((rec) => (
-              <UserRecord
-                name={rec.name}
-                email={rec.email}
-                id={rec.id}
-                investType={rec.investType}
-                status={rec.status}
-                amount={rec.amount}
-              />
-            ))}
-          </tbody>
-        </table>
+        {spinnerShow ? (
+          <Spinner />
+        ) : (
+          <table className="w-full text-sm text-left rtl:text-right text-neutral-500">
+            <thead className="text-xs text-gray-700 font-medium">
+              <tr>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-center font-medium text-xs"
+                >
+                  Name
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-center font-medium text-xs"
+                >
+                  UserID
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-center font-medium text-xs"
+                >
+                  Investment Type
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-center font-medium text-xs"
+                >
+                  Status
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-center font-medium text-xs"
+                >
+                  Amount Distributed
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-center font-medium text-xs"
+                ></th>
+              </tr>
+            </thead>
+            <tbody>
+              {userList.map((rec) => (
+                <UserRecord
+                  key={rec.id}
+                  name={rec?.name}
+                  email={rec.email}
+                  id={rec.id || rec._id}
+                  investType={rec.investType}
+                  status={rec.status}
+                  amount={rec.amount}
+                  displayImage={rec.displayImage}
+                  onDelete={handleDeleteUser}
+                />
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
 
       {modalShow && (

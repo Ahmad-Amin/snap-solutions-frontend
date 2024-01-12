@@ -6,10 +6,20 @@ import { RiDriveLine } from "react-icons/ri";
 import { CgNotes } from "react-icons/cg";
 import { BiSupport } from "react-icons/bi";
 import { IoMdSettings } from "react-icons/io";
+import { IoMdLogOut } from "react-icons/io";
 
 import MenuButtons from "./MenuButtons";
+import { useContext } from "react";
+import UserContext from "../store/user-context";
 
 const Sidebar = () => {
+
+  const userCtx = useContext(UserContext)
+
+  const handleLogOut = () => {
+    userCtx.logoutUser()
+  }
+
   return (
     <div>
       <img className="h-auto max-w-full" alt="Website logo" src={siteLogo} />
@@ -28,11 +38,10 @@ const Sidebar = () => {
             menuText="drive"
             color="#B2B2B2"
           />
-          <MenuButtons
-            icon={<CgNotes />}
-            menuText="overview"
-            color="#B2B2B2"
-          />
+          <MenuButtons icon={<CgNotes />} menuText="overview" color="#B2B2B2" />
+          <div onClick={handleLogOut}>
+            <MenuButtons icon={<IoMdLogOut />} menuText="logOut" />
+          </div>
         </div>
 
         <div id="otherSection" className="mt-10">

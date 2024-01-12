@@ -1,39 +1,52 @@
 import React from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import UserContext from "../store/user-context";
 
 const MyAccount = () => {
+  const userCtx = useContext(UserContext);
+
+  const {
+    additionalUserDetails: {
+      description,
+      roleDescription,
+      companyName,
+      companyAddress,
+      phoneNumber,
+      achievements,
+      references,
+    },
+    email,
+    displayImage,
+    name
+  } = userCtx.user;
+
   return (
     <div className="px-20">
       <p className="font-semibold text-3xl my-4">My Account</p>
+      <div className=" flex flex-col gap-4 justify-center items-center">
+        <img src={displayImage} className="w-40 h-40 rounded-full object-cover" />
+        <p className=" font-bold text-xl">{ name}</p>
+      </div>
       <div className="flex gap-2 flex-col">
         <p className=" font-medium text-xl">Decription</p>
         <textarea
           className="border border-neutral-300 px-3 py-5 rounded-lg"
           rows={6}
-        >
-          It is a long established fact that a reader will be distracted by the
-          readable content of a page when looking at its layout. The point of
-          using Lorem Ipsum is that it has a more-or-less normal distribution of
-          letters, as opposed to using 'Content here, content here', making it
-          look like readable English. Many desktop publishing packages and web
-          page editors now use Lorem Ipsum as their default model text, and a
-          search for 'lorem ipsum' will uncover many web sites still in their
-          infancy. Various versions have evolved over the years, sometimes by
-          accident, sometimes on purpose (injected humour and the like)."
-        </textarea>
+          readOnly
+          disabled
+          value={description}
+        />
       </div>
       <div className="flex gap-2 flex-col">
         <p className=" font-medium text-xl mt-9">Role Description</p>
         <textarea
           className="border border-neutral-300 px-3 py-5 rounded-lg"
           rows={5}
-        >
-          It is a long established fact that a reader will be distracted by the
-          readable content of a page when looking at its layout. The point of
-          using Lorem Ipsum is that it has a more-or-less normal distribution of
-          letters, as opposed to using 'Content here, content here', making it
-          look like readable English. Many desktop publis).
-        </textarea>
+          readOnly
+          disabled
+          value={roleDescription}
+        />
       </div>
       <div className="grid grid-cols-2 gap-x-16 gap-y-8">
         <div className="flex gap-2 flex-col">
@@ -41,7 +54,9 @@ const MyAccount = () => {
           <input
             className="border border-neutral-300 px-3 py-5 rounded-lg"
             type="text"
-            value="Infinity Express"
+            value={companyName}
+            readOnly
+            disabled
           />
         </div>
         <div className="flex gap-2 flex-col">
@@ -49,7 +64,9 @@ const MyAccount = () => {
           <input
             className="border border-neutral-300 px-3 py-5 rounded-lg"
             type="text"
-            value="myemail@gmail.com"
+            value={email}
+            readOnly
+            disabled
           />
         </div>
         <div className="flex gap-2 flex-col">
@@ -57,7 +74,9 @@ const MyAccount = () => {
           <input
             className="border border-neutral-300 px-3 py-5 rounded-lg"
             type="text"
-            value="Street 45, Lane 10, Downtown City , London "
+            value={companyAddress}
+            readOnly
+            disabled
           />
         </div>
         <div className="flex gap-2 flex-col">
@@ -65,7 +84,9 @@ const MyAccount = () => {
           <input
             className="border border-neutral-300 px-3 py-5 rounded-lg"
             type="text"
-            value="+147837480847"
+            value={phoneNumber}
+            readOnly
+            disabled
           />
         </div>
         <div className="flex gap-2 flex-col">
@@ -73,7 +94,9 @@ const MyAccount = () => {
           <input
             className="border border-neutral-300 px-3 py-5 rounded-lg"
             type="text"
-            value="Globe Award, Fin Award  "
+            value={achievements}
+            readOnly
+            disabled
           />
         </div>
         <div className="flex gap-2 flex-col">
@@ -81,7 +104,9 @@ const MyAccount = () => {
           <input
             className="border border-neutral-300 px-3 py-5 rounded-lg"
             type="text"
-            value="References"
+            value={references}
+            readOnly
+            disabled
           />
         </div>
       </div>

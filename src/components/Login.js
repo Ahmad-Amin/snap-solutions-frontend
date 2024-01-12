@@ -1,18 +1,58 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useContext } from "react";
 
 import siteLogo from "../assets/siteLogo.png";
 import LoginPageImage from "../assets/LoginPageImage.png";
-import { InputField } from "./InputField";
+import axios from "axios";
+import UserContext from "../store/user-context";
 
-const Login = ({ handleLogin }) => {
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Spinner from "../UI/Spinner";
 
-  const userSignIn = () => {
-    handleLogin(checkboxRef.current.checked);
+const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [spinnerShow, setSpinnerShow] = useState(false);
+
+  const navigate = useNavigate();
+
+  const userCtx = useContext(UserContext);
+
+  const userSignIn = async (e) => {
+    e.preventDefault();
+    const data = {
+      email: email,
+      password: password,
+    };
+
+    try {
+      setSpinnerShow(true);
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/login`,
+        data
+      );
+
+      if (response.status === 200 && response.status !== null) {
+        const user = response.data;
+        console.log("Logged in successfully:", user);
+        navigate("/dashboard");
+        userCtx.saveUserData(user);
+      }
+    } catch (error) {
+      toast.error(`Error: ${error.response.data.error}`);
+      userCtx.logoutUser();
+    } finally {
+      setSpinnerShow(false);
+    }
+
+    setEmail("");
+    setPassword("");
   };
 
-  const checkboxRef = useRef(null);
-
-  return (
+  return spinnerShow ? (
+    <Spinner />
+  ) : (
     <div className="py-11 px-5">
       <img className="h-auto max-w-full" alt="Website logo" src={siteLogo} />
       <div className="grid grid-cols-2">
@@ -29,29 +69,34 @@ const Login = ({ handleLogin }) => {
               <div className="flex flex-col gap-5">
                 <div>
                   <label
-                    for="email"
+                    htmlFor="email"
                     className="text-custom-blue text-base mb-1.5 block"
                   >
                     Email
                   </label>
-                  <InputField
-                    id="email"
-                    placeholder="Enter your email"
+                  <input
                     type="text"
-                    text="Email"
+                    className="border border-neutral-400 text-neutral-400 rounded-lg py-1.5 px-4 w-full"
+                    name="name"
+                    placeholder="Enter your Email"
+                    onChange={(e) => setEmail(e.target.value)}
+                    value={email}
                   />
                 </div>
                 <div>
                   <label
-                    for="password"
+                    htmlFor="password"
                     className="text-custom-blue text-base mb-1.5 block"
                   >
                     password
                   </label>
-                  <InputField
-                    id="password"
-                    placeholder="Enter your password"
+                  <input
                     type="password"
+                    className="border border-neutral-400 text-neutral-400 rounded-lg py-1.5 px-4 w-full"
+                    name="password"
+                    placeholder="Enter your Password"
+                    onChange={(e) => setPassword(e.target.value)}
+                    value={password}
                   />
                 </div>
               </div>
@@ -64,16 +109,6 @@ const Login = ({ handleLogin }) => {
               >
                 Sign In
               </button>
-              <div className="flex flex-row gap-3">
-                <input
-                  className="bg-custom-blue text-white py-2 rounded-lg"
-                  value="SuperAdmin LoginIn"
-                  type="checkbox"
-                  ref={checkboxRef}
-                  id="superAdmin"
-                />
-                <label htmlFor="superAdmin">Sign In As super Admin</label>
-              </div>
 
               <p className="text-neutral-400 my-4 text-center">
                 Don't have an account?{" "}

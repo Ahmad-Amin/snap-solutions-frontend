@@ -12,8 +12,17 @@ import { IoIosStats } from "react-icons/io";
 import { IoMdLogOut } from "react-icons/io";
 
 import siteLogo from "../../assets/siteLogo.png";
+import { useContext } from "react";
+import UserContext from "../../store/user-context";
 
-const SuperSidebar = ({ handleLogOut }) => {
+const SuperSidebar = () => {
+
+  const userCtx = useContext(UserContext)
+
+  const handleLogOut = () => {
+    userCtx.logoutUser()
+  }
+
   return (
     <div>
       <img className="h-auto max-w-full" alt="Website logo" src={siteLogo} />
@@ -45,7 +54,7 @@ const SuperSidebar = ({ handleLogOut }) => {
             Other
           </p>
           <MenuButtons icon={<IoMdSettings />} menuText="settings" />
-          <div onClick={() => handleLogOut(false)}>
+          <div onClick={handleLogOut}>
             <MenuButtons icon={<IoMdLogOut />} menuText="logOut" />
           </div>
         </div>
