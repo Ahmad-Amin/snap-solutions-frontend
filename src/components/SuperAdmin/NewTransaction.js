@@ -12,6 +12,17 @@ import "react-phone-input-2/lib/style.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+const customStylesForSelect = {
+  control: (provided, state) => ({
+    ...provided,
+    borderBottom: "1px solid rgb(212 212 212)",
+    borderLeft: "none",
+    borderRight: "none",
+    borderTop: "none",
+    width: "100%",
+  }),
+};
+
 const NewTransaction = ({ setModalShow }) => {
   const userCtx = useContext(UserContext);
   const [spinnerShow, setSpinnerShow] = useState(false);
@@ -23,6 +34,7 @@ const NewTransaction = ({ setModalShow }) => {
     message: "",
     recipient: null,
     name: "",
+    transactionType: "",
   });
 
   useEffect(() => {
@@ -69,8 +81,7 @@ const NewTransaction = ({ setModalShow }) => {
     }));
   };
 
-  const handleSubmit = () => {
-    console.log("Form Data:", formData);
+  const handleSubmit = async () => {
     if (formData.recipient == null) {
       toast.error("Please Select the Recipient name");
       return;
@@ -81,8 +92,13 @@ const NewTransaction = ({ setModalShow }) => {
       return;
     }
 
-    toast.success(`Successfully, Transfered the Funds to ${formData.name}`);
-    setModalShow(false);
+    const response = await axios.post(`${process.env.REACT_APP_API_URL}/create-new-transaction`, formData);
+    console.log(response)
+    if (response.status === 201 && response.data !== null) {
+      console.log(response)
+      toast.success(`Successfully, Transfered the Funds to ${formData.name}`);
+      setModalShow(false);
+    }
   };
 
   return spinnerShow ? (
@@ -98,9 +114,9 @@ const NewTransaction = ({ setModalShow }) => {
         </label>
         <PhoneInput
           inputStyle={{
-            borderBottom: "1px solid rgb(212 212 212", // Keep the bottom border
-            borderLeft: "none", // Remove left border
-            borderRight: "none", // Remove right border
+            borderBottom: "1px solid rgb(212 212 212)",
+            borderLeft: "none",
+            borderRight: "none",
             borderTop: "none",
             width: "100%",
           }}
@@ -117,7 +133,7 @@ const NewTransaction = ({ setModalShow }) => {
           Amount
         </label>
         <input
-          className=" font-medium text-base text-neutral-900 border-b border-neutral-300"
+          className=" font-medium text-base text-neutral-900 border-b border-neutral-300 focus:outline-none"
           type="number"
           inputMode="none"
           value={formData.amount}
@@ -126,13 +142,27 @@ const NewTransaction = ({ setModalShow }) => {
       </div>
       <div className="flex flex-col gap-2">
         <label className=" font-normal text-xs text-neutral-600 block">
+          Type
+        </label>
+        <input
+          className=" font-medium text-base text-neutral-900 border-b border-neutral-300 focus:outline-none"
+          type="text"
+          value={formData.transactionType}
+          onChange={(e) =>
+            handleUserInputChange("transactionType", e.target.value)
+          }
+        />
+      </div>
+      <div className="flex flex-col gap-2">
+        <label className=" font-normal text-xs text-neutral-600 block">
           Recipient Name
         </label>
         <Select
-          className="font-medium text-base text-neutral-900 border-b border-neutral-300"
+          className="font-medium text-base text-neutral-900  "
           value={formData.recipient?.label}
           onChange={handleChange}
           options={userOptions}
+          styles={customStylesForSelect}
         />
       </div>
       <textarea

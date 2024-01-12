@@ -35,7 +35,6 @@ const Login = () => {
 
       if (response.status === 200 && response.status !== null) {
         const user = response.data;
-        console.log("Logged in successfully:", user);
         navigate("/dashboard");
         userCtx.saveUserData(user);
       }

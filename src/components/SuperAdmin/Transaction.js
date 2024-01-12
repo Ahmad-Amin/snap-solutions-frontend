@@ -2,7 +2,14 @@ import React from "react";
 import Button from "./Button";
 import CurrencyFormatter from "../../UI/CurrencyFormatter";
 
-const Transaction = ({ image, name, department, status, date, amount }) => {
+const Transaction = ({
+  image,
+  name,
+  transactionType,
+  status,
+  date,
+  amount,
+}) => {
   const formatDate = (date) => {
     const originalDate = new Date(date);
     const formattedDate = originalDate.toLocaleDateString("en-US", {
@@ -21,7 +28,7 @@ const Transaction = ({ image, name, department, status, date, amount }) => {
           <p>{name}</p>
         </div>
       </td>
-      <td className="py-4 px-2 min-w-36 text-center">{department}</td>
+      <td className="py-4 px-2 min-w-36 text-center uppercase">{transactionType}</td>
       <td className="py-4 px-2 min-w-60 text-center">
         <Button name={status} />
       </td>

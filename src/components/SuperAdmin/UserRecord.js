@@ -19,7 +19,6 @@ const UserRecord = ({
 
   const handleDeleteClick = (userId) => {
     // onDelete(userId); 
-    console.log(userId)
     setShowDropdown(false); 
   };
 

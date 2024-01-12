@@ -58,7 +58,7 @@ const TransactionsHistory = () => {
                 key={index}
                 name={rec.receiverName}
                 image={recentPaymentOne}
-                department={rec.type}
+                transactionType={rec.transactionType}
                 status={rec.status}
                 amount={rec.amount}
                 date={rec.transactionDate}
