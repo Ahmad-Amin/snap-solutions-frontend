@@ -1,36 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Button from "./Button";
 import recentPaymentOne from "../../assets/rp-1.png";
 import recentPaymentTwo from "../../assets/rp-2.png";
 import Transaction from "./Transaction";
+import axios from "axios";
 
 const TransactionsHistory = () => {
-  const transactionDate = [
-    {
-      image: recentPaymentOne,
-      name: "Emma Ryan",
-      department: "IT",
-      status: "Done",
-      date: "Feb 19, 2023",
-      amount: "$3,023",
-    },
-    {
-      image: recentPaymentTwo,
-      name: "Adrian Daren",
-      department: "Vehicle",
-      status: "Pending",
-      date: "Jan 01, 2023",
-      amount: "$1,003",
-    },
-    {
-      image: recentPaymentOne,
-      name: "Taszid Izaz",
-      department: "Medical",
-      status: "Done",
-      date: "Apr 04, 2023",
-      amount: "$10,000",
-    },
-  ];
+
+  const [transactionsData, setTransactionsData] = useState([]);
+
+  useEffect(() => {
+    const getAllTransactions = async () => {
+      try {
+        // setSpinnerShow(true);
+        const response = await axios.get(
+          `${process.env.REACT_APP_API_URL}/get-all-transactions`
+        );
+        if (response.status === 200 && response.data !== null) {
+          // setuserList(response.data);
+          setTransactionsData(response.data);
+          // setSpinnerShow(false);
+        }
+      } catch (error) {
+        console.log(error);
+        // setSpinnerShow(false);
+      }
+    };
+
+    getAllTransactions();
+  }, []);
 
   return (
     <div className="bg-white p-9 rounded-tl-2xl rounded-tr-2xl ">
@@ -58,15 +56,15 @@ const TransactionsHistory = () => {
             </tr>
           </thead>
           <tbody>
-            {transactionDate.map((rec, index) => (
+            {transactionsData.map((rec, index) => (
               <Transaction
                 key={index}
-                name={rec.name}
-                image={rec.image}
-                department={rec.department}
+                name={rec.receiverName}
+                image={recentPaymentOne}
+                department={rec.type}
                 status={rec.status}
                 amount={rec.amount}
-                date={rec.date}
+                date={rec.transactionDate}
               />
             ))}
           </tbody>
